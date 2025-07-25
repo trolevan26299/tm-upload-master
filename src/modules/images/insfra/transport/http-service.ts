@@ -1,11 +1,11 @@
 import { UploadImageCmd } from '@modules/images/usecase/upload.cmd'
 import { ICommandHandler } from '@share/interface'
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import fs from 'fs'
 export class HTTPService {
   constructor(readonly uploadCmdHdl: ICommandHandler<UploadImageCmd, string>) {}
 
-  async uploadImage(req: Request, res: Response) {
+  async uploadImage(req: Request, res: Response, next?: NextFunction) {
     try {
       const file = req.file as Express.Multer.File
 
